@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css?family=Rubik:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic");
+@import url("https://fonts.googleapis.com/css?family=Rambla:regular,italic,700,700italic");
+.header {
+  position: absolute;
+  width: 1440px;
+  height: 613px;
+  left: 78.5px;
+  top: 0px;
+
+  margin: auto;
+}
+.logo {
+  position: absolute;
+  width: 125px;
+  height: 36px;
+  left: 197px;
+  top: 47px;
+}
+.logoText {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.shoppingCart {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 362px;
+  top: 53px;
+}
+.headLine {
+  position: absolute;
+  width: 0px;
+  height: 34px;
+  left: 341px;
+  top: 47px;
+
+  border: 0.8px solid #dedede;
+}
+.leftSide {
+  position: absolute;
+  width: 673px;
+  height: 613px;
+  left: 768px;
+  top: 0px;
+
+  background-image: url("../images/leftbg.png");
+  background-repeat: no-repeat;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.leftImage {
+  position: absolute;
+  width: 297px;
+  height: 497px;
+  left: 250px;
+  top: 116px;
+}
+
+.navBar {
+  position: absolute;
+  width: 465px;
+  height: 60px;
+  left: 891px;
+  top: 34px;
+}
+.navBarRoutes {
+  position: absolute;
+  width: 230px;
+  height: 19px;
+  left: 891px;
+  top: 55px;
+}
+.navButton {
+  position: absolute;
+  width: 65px;
+  height: 19px;
+  left: 891px;
+  top: 55px;
+  text-decoration: underline;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+
+  color: #ffffff;
+}
+.navButton2 {
+  position: absolute;
+  width: 40px;
+  height: 19px;
+  left: 1001px;
+  top: 55px;
+
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+
+  color: #ffffff;
+}
+
+.navButton3 {
+  position: absolute;
+  width: 75px;
+  height: 25px;
+  left: 1086px;
+  top: 55px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+
+  color: #ffffff;
+}
+a {
+  text-decoration: none;
+}
+.loginButton {
+  position: absolute;
+  width: 190px;
+  height: 60px;
+  left: 1166px;
+  top: 34px;
+
+  /* color second */
+
+  border: 2px solid #f5f6f8;
+  border-radius: 30px;
+
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  box-shadow: 5px 5px 5px black;
+}
+.loginButton:active {
+  transform: translate(0, 3px);
+}
+
+.logButtonText {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
+  text-align: center;
+  margin: 0;
+  /* identical to box height */
+
+  color: #000000;
+}
+.headerTextBox {
+  position: absolute;
+  width: 574px;
+  height: 321px;
+  left: 193px;
+  top: 218px;
+}
+.headerTitle {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 75px;
+  line-height: 95px;
+  /* or 127% */
+  text-transform: uppercase;
+
+  color: #000000;
+}
+.headerDescription {
+  font-family: "Rambla";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 31px;
+  /* identical to box height */
+
+  text-transform: capitalize;
+
+  color: #000000;
+}
+.searchBar {
+  width: 406px;
+  height: 60px;
+  border: 1px solid #f5f6f8;
+  background: #f5f6f8;
+}
+
+.loginBlock {
+  width: 400px;
+  height: 500px;
+  position: absolute;
+  left: 1000px;
+  top: 100px;
+  background: #fff;
+  border-radius: 30px;
+}
+.loginSec {
+  user-select: none;
+  position: absolute;
+  left: 50px;
+  top: 30px;
+  width: 300px;
+  height: 450px;
+
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 31px;
+  /* identical to box height */
+
+  text-transform: capitalize;
+}
+.loginButtonIn {
+  position: absolute;
+  top: 300px;
+  width: 100px;
+  height: 40px;
+  background-color: transparent;
+  border-color: rgb(250, 200, 0);
+}
+.inputLogin {
+  width: 280px;
+  height: 25px;
+}
+.loginError {
+  position: absolute;
+  top: 350px;
+  font-size: 14px;
+  width: 350px;
+  color: red;
+}
+.signUp {
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+  left: 120px;
+  top: 290px;
+  box-sizing: content-box;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 31px;
+  /* identical to box height */
+
+  text-transform: capitalize;
+}
+.closeButton {
+  position: absolute;
+  left: 300px;
+  cursor: pointer;
+  border: 1px solid #000;
+  color: red;
+  border: none;
+  background-color: transparent;
+  font-size: 25px;
+}

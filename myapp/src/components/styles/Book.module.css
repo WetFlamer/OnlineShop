@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css?family=Rubik:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic");
+
+.books {
+  position: relative;
+  width: 425px;
+  height: 317px;
+  margin-top: 90px;
+}
+.booksBox {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 359px;
+  height: 317px;
+  background: #ffffff;
+  border: 0.5px solid #dedede;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 0px 10px 10px 0px;
+}
+.bookImage {
+  position: absolute;
+  width: 147.45px;
+  height: 225.35px;
+  left: -70px;
+  top: 45px;
+  filter: drop-shadow(0px 10px 40px rgba(0, 0, 0, 0.2));
+}
+.bookName {
+  position: absolute;
+  left: 100px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 35px;
+  /* or 140% */
+  width: 244px;
+  height: 38px;
+  overflow: hidden;
+  text-transform: capitalize;
+
+  color: #000000;
+}
+.bookAuthor {
+  position: absolute;
+  box-sizing: content-box;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+  top: 50px;
+  left: 100px;
+  text-transform: capitalize;
+
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.bookDescription {
+  width: 245.76px;
+  height: 150.41px;
+  position: absolute;
+  top: 80px;
+  left: 100px;
+  font-family: "Rambla";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* or 156% */
+
+  letter-spacing: 0.003em;
+
+  color: rgba(0, 0, 0, 0.3);
+}
+.addCart {
+  position: absolute;
+  background: #ff971d;
+  border: 1px solid #ff971d;
+  border-radius: 10px;
+  width: 120px;
+  height: 40px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 30px;
+  text-transform: capitalize;
+
+  color: #ffffff;
+
+  left: 100px;
+  top: 255px;
+}
+.addCart:active {
+  transform: translate(0, 3px);
+}
+.bookPrice {
+  position: absolute;
+  top: 235px;
+  left: 260px;
+  height: 25px;
+  width: 90px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 30px;
+  text-transform: capitalize;
+}
