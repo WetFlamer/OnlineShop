@@ -50,12 +50,12 @@ const Header = () => {
 
   const handleSign =  async (e) => {
     e.preventDefault();
-    dispatch(authSignIn({ username, password }));
+    await dispatch(authSignIn({ username, password }));
     setUsername("");
     setPassword("");
-    if(error.length < 0) {
-      window.location.reload()
-    }
+    if(error === null) {
+    await e.location.reload()
+    } 
   };
 
   useEffect(() => {
