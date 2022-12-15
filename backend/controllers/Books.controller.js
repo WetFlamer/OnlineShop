@@ -37,5 +37,5 @@ module.exports = booksController = {
     } catch (error) {
       return res.json(error)
     }
-  }
+  },
 };

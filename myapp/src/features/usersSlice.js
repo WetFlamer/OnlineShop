@@ -5,6 +5,13 @@ const initialState = {
   signingUp: false,
   signingIn: false,
   token: localStorage.getItem("token"),
+  username: localStorage.getItem("username"),
+  wallet: localStorage.getItem("wallet"),
+  id: localStorage.getItem("id"),
+  successfully: null,
+  cart: [],
+  bougth: [],
+  loading: false,
 };
 
 export const authSignUp = createAsyncThunk(
@@ -18,8 +25,8 @@ export const authSignUp = createAsyncThunk(
       });
       const users = await res.json();
 
-      if (users.error) {
-        return thunkAPI.rejectWithValue(users.error);
+      if (users.message) {
+        return thunkAPI.rejectWithValue(users.message);
       }
 
       return thunkAPI.fulfillWithValue(users);
@@ -43,9 +50,125 @@ export const authSignIn = createAsyncThunk(
         return thunkAPI.rejectWithValue(token.error);
       }
       localStorage.setItem("token", token.token);
+      localStorage.setItem("username", token.username);
+      localStorage.setItem("wallet", token.wallet);
+      localStorage.setItem("id", token.id);
       return thunkAPI.fulfillWithValue(token);
     } catch (error) {
-      thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const fetchTop = createAsyncThunk(
+  "user/topup",
+  async ({ userId, wallet }, thunkAPI) => {
+    try {
+      const res = await fetch(`http://localhost:4000/${userId}`, {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${thunkAPI.getState().users.token}`,
+        },
+        method: "PATCH",
+        body: JSON.stringify({
+          wallet,
+        }),
+      });
+      const user = await res.json();
+      if (user.error) {
+        return thunkAPI.rejectWithValue(user.error.message);
+      }
+      localStorage.setItem(
+        "wallet",
+        Number(thunkAPI.getState().users.wallet) + wallet
+      );
+      return thunkAPI.fulfillWithValue(user);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const addtoCart = createAsyncThunk(
+  "addtoCart/book",
+  async ({ userId, bookId }, thunkAPI) => {
+    try {
+      const res = await fetch(
+        `http://localhost:4000/addtoCart/${userId}/${bookId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${thunkAPI.getState().users.token}`,
+          },
+        }
+      );
+      const user = await res.json();
+      if (user.error) {
+        thunkAPI.rejectWithValue(user.error);
+      }
+      return thunkAPI.fulfillWithValue(user.cart);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const fetchCart = createAsyncThunk(
+  "fetch/cart",
+  async ({ userId }, thunkAPI) => {
+    try {
+      const res = await fetch(`http://localhost:4000/cart/${userId}`, {
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      const user = await res.json();
+      if (user.error) {
+        thunkAPI.rejectWithValue(user.error);
+      }
+      return thunkAPI.fulfillWithValue(user.cart);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const buyBook = createAsyncThunk(
+  "buy/book",
+  async ({ userId, bookId }, thunkAPI) => {
+    try {
+      const res = await fetch(`http://localhost:4000/buy/${userId}/${bookId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${thunkAPI.getState().users.token}`,
+        },
+      });
+      const user = await res.json();
+      if (user.error) {
+        thunkAPI.rejectWithValue(user.error.message);
+      }
+      return thunkAPI.fulfillWithValue(user.cart, user.bougth);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const deletefromCart = createAsyncThunk(
+  "delete/cart",
+  async ({ userId, bookId }, thunkAPI) => {
+    try {
+      const res = await fetch(`http://localhost:4000/buy/${userId}/${bookId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${thunkAPI.getState().users.token}`,
+        },
+      });
+      const user = await res.json();
+      if (user.error) {
+        thunkAPI.rejectWithValue(user.error.message);
+      }
+      return thunkAPI.fulfillWithValue(user.cart);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -56,17 +179,20 @@ const usersSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(authSignUp.pending, (state) => {
+      .addCase(authSignUp.pending, (state) => {
         state.signingUp = true;
         state.error = null;
+        state.successfully = null;
       })
       .addCase(authSignUp.rejected, (state, action) => {
         state.signingUp = false;
         state.error = action.payload;
+        state.successfully = null;
       })
       .addCase(authSignUp.fulfilled, (state, action) => {
         state.signingUp = false;
         state.error = null;
+        state.successfully = action.payload;
       })
 
       // POST TOKEN
@@ -77,13 +203,72 @@ const usersSlice = createSlice({
       .addCase(authSignIn.rejected, (state, action) => {
         state.signingIn = false;
         state.error = action.payload;
-        state.token = null
+        state.token = null;
       })
       .addCase(authSignIn.fulfilled, (state, action) => {
         state.signingIn = false;
         state.error = null;
         state.token = action.payload;
-      });
+      })
+      // TOPUP
+      .addCase(fetchTop.fulfilled, (state) => {
+        state.error = null;
+        state.successfully = "Вы успешно пополнили баланс";
+      })
+      .addCase(fetchTop.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(fetchTop.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+      // ADD TO CART
+      .addCase(addtoCart.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+      })
+      .addCase(addtoCart.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false
+      })
+      .addCase(addtoCart.pending, (state, action) => {
+        state.error = null;
+        state.loading = true
+      })
+      // GET CART
+      .addCase(fetchCart.fulfilled, (state, action) => {
+        state.cart = action.payload;
+      })
+      .addCase(fetchCart.pending, (state, action) => {
+        state.error = null;
+      })
+      .addCase(fetchCart.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+      // BUY BOOK
+      .addCase(buyBook.fulfilled, (state, action) => {
+        state.error = null;
+      })
+      .addCase(buyBook.pending, (state, action) => {
+        state.error = null;
+      })
+      .addCase(buyBook.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+      // DELETE FROM CART
+      .addCase(deletefromCart.fulfilled, (state, action) => {
+        state.error = null;
+        state.loading = false;
+
+      })
+      .addCase(deletefromCart.pending, (state, action) => {
+        state.error = null;
+        state.loading = true;
+      })
+      .addCase(deletefromCart.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+      })
+       
   },
 });
 

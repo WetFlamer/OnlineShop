@@ -32,6 +32,7 @@
   height: 24px;
   left: 362px;
   top: 53px;
+  cursor: pointer;
 }
 .headLine {
   position: absolute;
@@ -267,4 +268,26 @@ a {
   border: none;
   background-color: transparent;
   font-size: 25px;
+}
+
+.successfully {
+  position: absolute;
+  top: 350px;
+  font-size: 14px;
+  width: 350px;
+  color: green;
+}
+.cartCount {
+  position: absolute;
+  top: -25px;
+  left: 21px;
+  border: 1px solid #000;
+  border-radius: 30px;
+  font-family: 'Rubik';
+  font-size: 15px;
+  text-align: center;
+  width: 20px;
+background-color: red;
+color: white;
+border: none;
 }

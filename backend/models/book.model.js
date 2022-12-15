@@ -15,7 +15,8 @@ const bookSchema = mongoose.Schema({
         ref: "categories",
         type: mongoose.SchemaTypes.ObjectId
     },
-    price: Number
+    price: Number,
+    left: Number,
 })
 
 const Book = mongoose.model('book', bookSchema)

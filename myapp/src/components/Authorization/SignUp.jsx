@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styles from "../styles/Header.module.css";
 const SignIn = ({
   handleSignUp,
@@ -10,6 +11,7 @@ const SignIn = ({
   handleClose,
   handleOpenI
 }) => {
+  const successfully = useSelector((state) => state.users.successfully)
   return (
     <div className={styles.loginSec}>
         <button onClick={handleClose} className={styles.closeButton}>x</button>
@@ -42,6 +44,7 @@ const SignIn = ({
           Регистрация
         </button>
         <p onClick={handleOpenI} className={styles.signUp}>Войти</p>
+        {successfully ? <div className={styles.successfully}>{successfully}</div> : null}
         {error ? <div className={styles.loginError}>{error}</div> : null}
       </form>
     </div>

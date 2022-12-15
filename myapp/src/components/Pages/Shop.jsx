@@ -3,33 +3,44 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchBooks } from "../../features/booksSlice";
-import { fetchCategories } from "../../features/categoriesSlice";
+import { fetchCart } from "../../features/usersSlice";
+// import { fetchCategories } from "../../features/categoriesSlice";
 import BookCart from "../BookCart";
-import Genres from "../Genres";
+// import Genres from "../Genres";
 import styles from "../styles/Shop.module.css";
 const Shop = () => {
   const books = useSelector((state) => state.books.books);
   const dispatch = useDispatch();
-
+const token = useSelector((state) => state.users.token)
   useEffect(() => {
     dispatch(fetchBooks());
   }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchCategories())
+  // }, [dispatch])
+  const user = useSelector((state) => state.users.id)
+
   useEffect(() => {
-    dispatch(fetchCategories())
-  }, [dispatch])
+   if(token) {
+    dispatch(fetchCart({userId: user}))
+   }
+}, [dispatch])
+
   return (
     <div>
-      <Genres />
+      {/* <Genre  s /> */}
       <div className={styles.bookCenter}>
         {books.map((book) => {
           return (
             <BookCart
+            left={book.left}
               name={book.name}
               author={book.author}
               price={book.price}
               category={book.category}
               poster={book.poster}
               description={book.description}
+              bookId={book._id}
             />
           );
         })}

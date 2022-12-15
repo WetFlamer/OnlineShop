@@ -61,7 +61,7 @@
   width: 245.76px;
   height: 150.41px;
   position: absolute;
-  top: 80px;
+  top: 65px;
   left: 100px;
   font-family: "Rambla";
   font-style: normal;
@@ -110,4 +110,57 @@
   font-size: 25px;
   line-height: 30px;
   text-transform: capitalize;
+}
+.addCart:disabled {
+  background-color: rgb(110, 110, 110);
+  border: none;
+  transform: translate(0, 0px);
+  font-size: 12px;
+}
+.alertReg {
+  border: 1px solid #000;
+  width: 200px;
+  height: 150px;
+  background-color: #000;
+  position: fixed;
+}
+.booksLeft {
+  position: relative;
+}
+svg {
+  width: 3.25em;
+  transform-origin: center;
+  animation: rotate4 2s linear infinite;
+}
+
+circle {
+  fill: none;
+  stroke: hsl(214, 97%, 59%);
+  stroke-width: 2;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash4 {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+
+  100% {
+    stroke-dashoffset: -125px;
+  }
 }
