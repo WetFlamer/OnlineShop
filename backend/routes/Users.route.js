@@ -18,4 +18,5 @@ router.patch('/addtoCart/:userId/:bookId', authMiddleware, usersController.addTo
 router.get('/cart/:userId',  usersController.getCart)
 router.patch('/buy/:userId/:bookId', authMiddleware, usersController.buyBook)
 router.patch('/cart/delete/:userId/:bookId', authMiddleware, usersController.deletefromCart)
+
 module.exports = router

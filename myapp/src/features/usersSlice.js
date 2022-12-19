@@ -132,7 +132,7 @@ export const fetchCart = createAsyncThunk(
 );
 export const buyBook = createAsyncThunk(
   "buy/book",
-  async ({ userId, bookId }, thunkAPI) => {
+  async ({ userId, price, bookId }, thunkAPI) => {
     try {
       const res = await fetch(`http://localhost:4000/buy/${userId}/${bookId}`, {
         method: "PATCH",
@@ -140,11 +140,18 @@ export const buyBook = createAsyncThunk(
           "Content-type": "application/json",
           Authorization: `Bearer ${thunkAPI.getState().users.token}`,
         },
+        body: JSON.stringify({
+            price
+        })
       });
       const user = await res.json();
       if (user.error) {
         thunkAPI.rejectWithValue(user.error.message);
       }
+      localStorage.setItem(
+        "wallet",
+        Number(thunkAPI.getState().users.wallet) - price
+      );
       return thunkAPI.fulfillWithValue(user.cart, user.bougth);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -172,7 +179,6 @@ export const deletefromCart = createAsyncThunk(
     }
   }
 );
-
 const usersSlice = createSlice({
   name: "application",
   initialState,
@@ -228,11 +234,11 @@ const usersSlice = createSlice({
       })
       .addCase(addtoCart.rejected, (state, action) => {
         state.error = action.payload;
-        state.loading = false
+        state.loading = false;
       })
       .addCase(addtoCart.pending, (state, action) => {
         state.error = null;
-        state.loading = true
+        state.loading = true;
       })
       // GET CART
       .addCase(fetchCart.fulfilled, (state, action) => {
@@ -247,18 +253,20 @@ const usersSlice = createSlice({
       // BUY BOOK
       .addCase(buyBook.fulfilled, (state, action) => {
         state.error = null;
+        state.loading = false;
       })
       .addCase(buyBook.pending, (state, action) => {
         state.error = null;
+        state.loading = true;
       })
       .addCase(buyBook.rejected, (state, action) => {
         state.error = action.payload;
+        state.loading = false;
       })
       // DELETE FROM CART
       .addCase(deletefromCart.fulfilled, (state, action) => {
         state.error = null;
         state.loading = false;
-
       })
       .addCase(deletefromCart.pending, (state, action) => {
         state.error = null;
@@ -267,8 +275,7 @@ const usersSlice = createSlice({
       .addCase(deletefromCart.rejected, (state, action) => {
         state.error = action.payload;
         state.loading = false;
-      })
-       
+      });
   },
 });
 

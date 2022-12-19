@@ -48,15 +48,14 @@ const Header = () => {
     setOpenedProfile(!openedProfile)
   }
 
-  const handleSign =  async (e) => {
+  const handleSign =   async(e) => {
     e.preventDefault();
     await dispatch(authSignIn({ username, password }));
     setUsername("");
     setPassword("");
     if(error === null) {
-    await e.location.reload()
-    } 
-  };
+      await window.location.reload()
+    }   };
 
   useEffect(() => {
     if(token) {

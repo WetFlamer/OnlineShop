@@ -104,14 +104,14 @@ $push: {cart: req.params.bookId}
     const {userId, bookId} = req.params
     try {
       const wal = await User.findById(userId)
-      const carT = wal.cart
       const wals = await wal.wallet
       const book = await Book.findById(bookId)
       const lef = await book.left
       const user = await User.findByIdAndUpdate(userId, {
         $push: {bought: bookId},
         wallet: wals - book.price,
-       $pull: {cart: bookId}
+       $pull: {cart: bookId},
+       wallet: req.body.price - wals
       }, {new: true})
       const bok = await Book.findByIdAndUpdate(bookId, {
         left: lef - 1

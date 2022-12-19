@@ -7,18 +7,26 @@ const CartModel = ({ id }) => {
   const dispatch = useDispatch();
   const books = useSelector((state) => state.books.books);
   const userId = useSelector((state) => state.users.id);
-  const user = useSelector((state) => state.users.id)
+  const user = useSelector((state) => state.users.id);
+  const balance = useSelector((state) => state.users.wallet);
 
- 
   return (
     <div className={styles.cartSection}>
       {books.map((book) => {
-        const handleBuy = () => {
-          dispatch(buyBook({ userId, bookId: book._id }));
+        const handleBuy = async () => {
+          if (balance >= book.price) {
+            await dispatch(
+              buyBook({ userId, bookId: book._id, price: book.price })
+            );
+            await dispatch(fetchCart({ userId: user }));
+            await alert('Вы успешно купили книгу! Доставка будет через: Никогда')
+          } else {
+            alert("Не достаточно средств");
+          }
         };
         const handleDeleteFromCart = async () => {
-          await dispatch(deletefromCart({ userId, bookId: book._id }))
-          await dispatch(fetchCart({userId: user}))
+          await dispatch(deletefromCart({ userId, bookId: book._id }));
+          await dispatch(fetchCart({ userId: user }));
         };
         if (id === book._id) {
           return (
