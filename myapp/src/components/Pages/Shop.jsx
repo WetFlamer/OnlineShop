@@ -24,7 +24,7 @@ const token = useSelector((state) => state.users.token)
    if(token) {
     dispatch(fetchCart({userId: user}))
    }
-}, [dispatch])
+}, [dispatch, token, user])
 
   return (
     <div>

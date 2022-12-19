@@ -7,7 +7,7 @@ import Shop from "./Pages/Shop";
 import Contacts from "./Pages/Contacts";
 import Features from "./Pages/AboutUs";
 import BookCart from "./BookCart";
-import { authSignIn, authSignUp } from "../features/usersSlice";
+import { authSignIn, authSignUp, fetchUsers } from "../features/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import SignIn from "./Authorization/SignIn";
 import SignUp from "./Authorization/SignUp";
@@ -71,7 +71,11 @@ const Header = () => {
   const handleRegOpen = (e) => {
     setRegOpened(true);
   };
-
+  useEffect(() => {
+   if(token) {
+    dispatch(fetchUsers())
+   }
+  },)
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -111,7 +115,7 @@ const Header = () => {
           </button>
         )}
         {openedProfile === true ? 
-        <Profile setOpenedProfile={setOpenedProfile}/>        
+        <Profile/>        
         : null}
 
         {opened === true ? (

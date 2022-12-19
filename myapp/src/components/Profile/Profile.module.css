@@ -17,106 +17,142 @@
   left: 50px;
 }
 .balance {
-    position: absolute;
-    top: 50px;
-    box-sizing: content-box;
-    left: 50px;
+  position: absolute;
+  top: 50px;
+  box-sizing: content-box;
+  left: 50px;
   font-family: "Rubik";
 }
 .exitButton {
-    position: absolute;
-    left: 390px;
-    cursor: pointer;
-    top: 25px;
-    background-color: transparent;
-    width: 90px;
-    font-family: "Rubik";
-    height: 30px;
-    border-radius: 10px;
+  position: absolute;
+  left: 390px;
+  cursor: pointer;
+  top: 25px;
+  background-color: transparent;
+  width: 90px;
+  font-family: "Rubik";
+  height: 30px;
+  border-radius: 10px;
 }
 .exitButton:hover {
-    box-shadow: 1px 1px 1px;
+  box-shadow: 1px 1px 1px;
 }
 .topUp {
-    position: absolute;
-box-sizing: content-box;
-height: 20px;
-    top: 68px;
-    left: 393px;
-    font-family: 'Rubik';
-    border-radius: 5px;
-    background-color: transparent;
-    border: 1px solid #000;
-    cursor: pointer;
+  position: absolute;
+  box-sizing: content-box;
+  height: 20px;
+  top: 68px;
+  left: 393px;
+  font-family: "Rubik";
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid #000;
+  cursor: pointer;
 }
 .topUpBlock {
-    position: absolute;
-    left: 50px;
-    top: 100px;
-    width: 250px;
-    height: 250px;
+  position: absolute;
+  left: 50px;
+  top: 100px;
+  width: 250px;
+  height: 250px;
 }
 .topUpTitle {
-    font-family: 'Rubik';
-box-sizing: content-box;
-font-size: 23px;
+  font-family: "Rubik";
+  box-sizing: content-box;
+  font-size: 23px;
 }
 .topInput {
-    border: 1px solid silver !important;
-    border-radius: 5px;
-    box-sizing: border-box;
-    color: #313a46;
-    height: 40px;
-    width: 240px;
+  border: 1px solid silver !important;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #313a46;
+  height: 40px;
+  width: 240px;
 }
 
 .topUpButton {
-    position: absolute;
-    left: 30px;
+  position: absolute;
+  left: 30px;
+  top: 20px;
+  padding: 10px 30px;
+  border: unset;
+  border-radius: 15px;
+  color: #212121;
+  z-index: 1;
+  background: #e8e8e8;
+  position: relative;
+  font-weight: 1000;
+  font-size: 17px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+  overflow: hidden;
+}
+
+.topUpButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  background-color: #212121;
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+}
+
+.topUpButton:hover {
+  color: #e8e8e8;
+}
+
+.topUpButton:hover::before {
+  width: 100%;
+}
+.successfully {
+  position: absolute;
+  width: 310px;
+  box-sizing: content-box;
+  top: 190px;
+  font-family: "Rubik";
+  font-size: 20px;
+  color: green;
+}
+.addBookButton {
+  position: absolute;
+  left: 370px;
+  cursor: pointer;
+  top: 450px;
+  background-color: transparent;
+  width: 120px;
+  font-family: "Rubik";
+  height: 30px;
+  border-radius: 10px;
+}
+.addBlock {
+    width: 1200px;
+    height: 650px;
+    background-color: white;
+    border: 2px solid #000;
+    border-radius: 30px;
+    position: fixed;
+    left: 160px;
     top: 20px;
-    padding: 10px 30px;
-    border: unset;
-    border-radius: 15px;
-    color: #212121;
-    z-index: 1;
-    background: #e8e8e8;
-    position: relative;
-    font-weight: 1000;
-    font-size: 17px;
-    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    transition: all 250ms;
-    overflow: hidden;
-   }
-   
-   .topUpButton::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0;
-    border-radius: 15px;
-    background-color: #212121;
-    z-index: -1;
-    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    transition: all 250ms
-   }
-   
-   .topUpButton:hover {
-    color: #e8e8e8;
-   }
-   
-   .topUpButton:hover::before {
-    width: 100%;
-   }
-   .successfully {
-    position: absolute;
-    width: 310px;
-box-sizing: content-box;
-    top: 190px;
+}
+.close {
+    background-color: transparent;
+    color: red;
+    border: 0px solid #000;
     font-family: 'Rubik';
-    font-size: 20px;
-    color: green;
+    font-size: 30px;
+    position: absolute;
+    left: 1160px;
+    cursor: pointer;
+}
+.bookName {
+  position: relative;
+  width: 450px;
+  height: 25px;
 }

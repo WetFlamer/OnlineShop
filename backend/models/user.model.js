@@ -10,7 +10,7 @@ const usersSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  roles: [{type: String, ref: 'roles'}],
+  roles: {type: String, ref: 'roles'},
   wallet: {
     type: Number,
     default: 0

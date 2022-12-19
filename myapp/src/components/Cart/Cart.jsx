@@ -2,12 +2,12 @@ import { useSelector } from "react-redux";
 import styles from "./Cart.module.css";
 import CartModel from "./CartModel";
 const Cart = () => {
-  const cart = useSelector((state) => state.users.cart);
+  const cart = useSelector((state) => state.users.users.cart);
   const loading = useSelector((state) => state.users.loading);
 
  
   return (
-    <div className={styles.cartBlock}>
+    <div id="element" className={styles.cartBlock}>
       {loading === true ? (
         <svg viewBox="25 25 50 50">
           <circle r="20" cy="50" cx="50"></circle>

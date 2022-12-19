@@ -8,8 +8,6 @@ const bookSchema = mongoose.Schema({
         type: mongoose.SchemaTypes.ObjectId
     },
     description: String,
-    translater: String,
-    publisher: String,
     poster: String,
     category: {
         ref: "categories",

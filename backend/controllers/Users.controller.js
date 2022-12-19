@@ -51,12 +51,14 @@ module.exports = usersController = {
       }
       const wallet = await user.wallet
       const id = user._id
+      const role = await user.roles
+      console.log(role)
       const validPassword = bcrypt.compareSync(password, user.password);
       if (!validPassword) {
         return res.status(400).json({error:'Не правильный логин или пароль'});
       }
       const token = await generateAccessToken(user._id, user.roles, user.username);
-      return res.json({ token, username, wallet, id});
+      return res.json({ token, username, role, wallet, id});
     } catch (error) {
       res.status(400).json("Login Error" + error);
     }
@@ -96,6 +98,8 @@ $push: {cart: req.params.bookId}
   },
   getUsers: async (req, res) => {
     try {
+      const user = await User.find()
+      return res.json(user)
     } catch (error) {
       res.json(error);
     }
@@ -111,7 +115,7 @@ $push: {cart: req.params.bookId}
         $push: {bought: bookId},
         wallet: wals - book.price,
        $pull: {cart: bookId},
-       wallet: req.body.price - wals
+       wallet: wals - req.body.price
       }, {new: true})
       const bok = await Book.findByIdAndUpdate(bookId, {
         left: lef - 1
