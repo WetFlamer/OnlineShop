@@ -126,6 +126,9 @@
 }
 .booksLeft {
   position: relative;
+  left: 100px;
+  font-size: 12px;
+  top: 220px;
 }
 svg {
   width: 3.25em;

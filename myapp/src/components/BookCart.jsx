@@ -45,7 +45,7 @@ const BookCart = ({
         <p className={styles.bookAuthor}>{author}</p>
         <p className={styles.bookDescription}> </p>
         <p className={styles.booksLeft}>Осталось: {left} шт</p>
-        <p className={styles.booksLeft}> {description}</p>
+        <p className={styles.bookDescription}> {description}</p>
 
         <p className={styles.bookPrice}>{price} ₽</p>
         <button
