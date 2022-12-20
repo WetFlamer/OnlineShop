@@ -33,6 +33,7 @@ const token = useSelector((state) => state.users.token)
         {books.map((book) => {
           return (
             <BookCart
+            key={book._id}
             left={book.left}
               name={book.name}
               author={book.author}

@@ -115,13 +115,14 @@ const Header = () => {
           </button>
         )}
         {openedProfile === true ? 
-        <Profile/>        
+        <Profile key={1}/>        
         : null}
 
         {opened === true ? (
           <div className={styles.loginBlock}>
             {regOpened === true ? (
               <SignUp
+              key={2}
                 handleSignIn={handleOpen}
                 handleSetLogin={handleSetLogin}
                 error={error}
@@ -135,6 +136,7 @@ const Header = () => {
               />
             ) : (
               <SignIn
+              key={3}
                 handleSetLogin={handleSetLogin}
                 error={error}
                 handleRegOpen={handleRegOpen}
