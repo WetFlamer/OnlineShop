@@ -36,7 +36,8 @@ const BookCart = ({
     if (cart.length > 0 && cart.includes(bookId)) {
       setDisabled(true);
     }
-  });
+  }, [bookId, cart]);
+
   return (
     <div className={styles.books}>
       <div className={styles.booksBox}>
