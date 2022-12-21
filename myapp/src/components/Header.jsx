@@ -18,23 +18,23 @@ const Header = () => {
   const [opened, setOpened] = useState(false);
   const [username, setUsername] = useState("");
   const [regOpened, setRegOpened] = useState(false);
-  const [openedProfile, setOpenedProfile] = useState(false)
+  const [openedProfile, setOpenedProfile] = useState(false);
   const [password, setPassword] = useState("");
-  const [openCart, setOpenCart] = useState(false)
+  const [openCart, setOpenCart] = useState(false);
   const error = useSelector((state) => state.users.error);
   const token = useSelector((state) => state.users.token);
-  const cart = useSelector((state) => state.users.cart)
+  const cart = useSelector((state) => state.users.cart);
   const dispatch = useDispatch();
   const handleOpen = () => {
     setOpened(!opened);
   };
   const handleOpenI = () => {
-    setOpened(true)
-    setRegOpened(false)
-  }
+    setOpened(true);
+    setRegOpened(false);
+  };
   const handleOpenCart = () => {
-    setOpenCart(!openCart)
-  }
+    setOpenCart(!openCart);
+  };
   const handleClose = () => {
     setOpened(false);
   };
@@ -45,23 +45,24 @@ const Header = () => {
     setPassword(e.target.value);
   };
   const handleOpenProfile = () => {
-    setOpenedProfile(!openedProfile)
-  }
+    setOpenedProfile(!openedProfile);
+  };
 
-  const handleSign =   async(e) => {
+  const handleSign = async (e) => {
     e.preventDefault();
     await dispatch(authSignIn({ username, password }));
     setUsername("");
     setPassword("");
-    if(error === null) {
-      await window.location.reload()
-    }   };
+    if (error === null) {
+      await window.location.reload();
+    }
+  };
 
   useEffect(() => {
-    if(token) {
-      setOpened(false)
-    } 
-  }, [token])
+    if (token) {
+      setOpened(false);
+    }
+  }, [token]);
   const handleSignUp = (e) => {
     e.preventDefault();
     dispatch(authSignUp({ username, password }));
@@ -72,10 +73,10 @@ const Header = () => {
     setRegOpened(true);
   };
   useEffect(() => {
-   if(token) {
-    dispatch(fetchUsers())
-   }
-  },)
+    if (token) {
+      dispatch(fetchUsers());
+    }
+  });
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -84,11 +85,13 @@ const Header = () => {
         </a>
       </div>
       <div className={styles.headLine}></div>
-      <div className={styles.shoppingCart}>
-        <img onClick={handleOpenCart} src={cartImage} alt="" />
-        <p className={styles.cartCount}>{cart.length}</p>
-        {openCart === true ? <Cart/> : null}
-      </div>
+      {token ? (
+        <div className={styles.shoppingCart}>
+          <img onClick={handleOpenCart} src={cartImage} alt="" />
+          <p className={styles.cartCount}>{cart.length}</p>
+          {openCart === true ? <Cart /> : null}
+        </div>
+      ) : null}
       <div className={styles.leftSide}>
         <img className={styles.leftImage} src={leftImage} alt="" />
       </div>
@@ -101,28 +104,26 @@ const Header = () => {
             AboutUS
           </Link>
           <Link className={styles.navButton3} to="/contacts">
-             Contacts
+            Contacts
           </Link>
         </div>
 
-        {token ?  (
+        {token ? (
           <button onClick={handleOpenProfile} className={styles.loginButton}>
             <p className={styles.logButtonText}>Профиль</p>
           </button>
         ) : (
-          <button  onClick={handleOpen} className={styles.loginButton}>
+          <button onClick={handleOpen} className={styles.loginButton}>
             <p className={styles.logButtonText}>Log In</p>
           </button>
         )}
-        {openedProfile === true ? 
-        <Profile key={1}/>        
-        : null}
+        {openedProfile === true ? <Profile key={1} /> : null}
 
         {opened === true ? (
           <div className={styles.loginBlock}>
             {regOpened === true ? (
               <SignUp
-              key={2}
+                key={2}
                 handleSignIn={handleOpen}
                 handleSetLogin={handleSetLogin}
                 error={error}
@@ -136,7 +137,7 @@ const Header = () => {
               />
             ) : (
               <SignIn
-              key={3}
+                key={3}
                 handleSetLogin={handleSetLogin}
                 error={error}
                 handleRegOpen={handleRegOpen}
@@ -155,7 +156,6 @@ const Header = () => {
         <p className={styles.headerDescription}>
           find your favorite book and read it here for free
         </p>
-        
       </div>
 
       <Routes>

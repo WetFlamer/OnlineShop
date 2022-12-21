@@ -10,19 +10,23 @@ const usersSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  roles: [{type: String, ref: 'roles'}],
+  roles: [{ type: String, ref: "roles" }],
   wallet: {
     type: Number,
-    default: 0
+    default: 0,
   },
-  cart: [{
-    ref: 'book',
-    type: mongoose.SchemaTypes.ObjectId
-}],
-bought: [{
-  ref: 'book',
-  type: mongoose.SchemaTypes.ObjectId
-}]
+  cart: [
+    {
+      ref: "book",
+      type: mongoose.SchemaTypes.ObjectId,
+    },
+  ],
+  bought: [
+    {
+      ref: "book",
+      type: mongoose.SchemaTypes.ObjectId,
+    },
+  ],
 });
 
 const User = mongoose.model("users", usersSchema);
